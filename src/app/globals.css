@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* Paleta da NOMA, tirada do feed: verde-petróleo do perfil, turquesa da lagoa, creme da areia,
+   mostarda/dourado do sol, terracota do pôr do sol, oliva/verde-mata do buriti e o azul da noite. */
+@theme {
+  --color-ink-950: #0f1a1f;
+  --color-ink-900: #1f3b3d;
+  --color-ink-800: #2f5e5f;
+  --color-ink-700: #3d7374;
+  --color-ink-100: #dfeae8;
+
+  --color-teal-50: #eef7f8;
+  --color-teal-100: #d6ecef;
+  --color-teal-200: #aed7de;
+  --color-teal-300: #86c0ca;
+  --color-teal-400: #71b0bb;
+  --color-teal-500: #5e9faa;
+  --color-teal-600: #4c8893;
+  --color-teal-700: #3c6f78;
+
+  --color-cream-50: #fbf6ea;
+  --color-cream-100: #f4e6c8;
+  --color-cream-200: #ead5a6;
+  --color-cream-300: #dcc084;
+  --color-cream-400: #c9a764;
+
+  --color-sun-300: #ebd6a9;
+  --color-sun-400: #e3b23c;
+  --color-sun-500: #c99626;
+  --color-sun-600: #9f7419;
+
+  --color-clay-400: #d9733b;
+  --color-clay-500: #c4541c;
+  --color-clay-600: #a24414;
+
+  --color-olive-400: #a9aa3c;
+  --color-olive-700: #4b5a1e;
+  --color-forest-800: #3d5525;
+
+  --font-sans: var(--font-josefin);
+  --font-display: var(--font-marcellus);
+  --font-serif: var(--font-cormorant);
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-kenburns: kenburns 18s ease-out both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.2s linear infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes kenburns {
+    from { transform: scale(1.12) translate3d(0, 0, 0); }
+    to { transform: scale(1) translate3d(0, -1.5%, 0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes shimmer {
+    from { background-position: -200% 0; }
+    to { background-position: 200% 0; }
+  }
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream-50);
+  color: var(--color-ink-900);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-teal-200);
+  color: var(--color-ink-950);
+}
+
+/* Palavra em destaque nos títulos: itálico serifado, como o "nossa" dos posts. */
+.font-display em {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+/* Dourado do sol pros títulos em destaque. */
+@utility text-sun-gradient {
+  background: linear-gradient(100deg, var(--color-sun-500), var(--color-sun-400) 45%, var(--color-sun-300) 60%, var(--color-sun-400));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-teal-gradient {
+  background: linear-gradient(100deg, var(--color-teal-500), var(--color-teal-600) 55%, var(--color-ink-800));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility skeleton {
+  background: linear-gradient(90deg, var(--color-cream-100) 25%, var(--color-cream-200) 50%, var(--color-cream-100) 75%);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Textura de "papel" dos posts (granulado bem leve) pros blocos de cor. */
+@utility grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
