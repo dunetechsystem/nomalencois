@@ -31,6 +31,12 @@ export const site = {
   onlineBooking: false,
 
   /**
+   * Carrinho ("Meu roteiro") sem o checkout: o cliente junta vários passeios com data e pessoas e,
+   * ao finalizar, o roteiro inteiro vai pro WhatsApp da agência. Ignorado se onlineBooking estiver ligado.
+   */
+  cart: true,
+
+  /**
    * Reels do Instagram mostrados na seção "No Instagram". Cole a URL do reel/post
    * (ex.: "https://www.instagram.com/reel/C9xYz123AbC/"). Vazio = a seção mostra a grade de fotos com
    * link pro perfil.
@@ -96,7 +102,7 @@ export const site = {
     {
       question: "Como funciona a reserva?",
       answer:
-        "Escolha o passeio aqui no site e toque em “Verificar disponibilidade”: a conversa abre no WhatsApp com o passeio já escrito. É só dizer a data e quantas pessoas vão — a NOMA confirma a vaga e combina o pagamento com você por lá.",
+        "Escolha o passeio, a data e quantas pessoas vão e adicione ao seu roteiro (o carrinho no topo da página). Dá pra juntar vários passeios numa reserva só. Ao finalizar, a conversa abre no WhatsApp com o roteiro já escrito — a NOMA confirma as vagas e combina o pagamento com você por lá.",
     },
     {
       question: "Qual a melhor época para visitar os Lençóis?",

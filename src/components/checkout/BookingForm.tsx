@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { CalendarDays, Loader2, TriangleAlert } from "lucide-react";
+import { site } from "@/config/site";
 import { useDayRules } from "@/lib/availability";
 import { itemKey, useCart, type CartItem } from "@/lib/cart";
 import { isFullDayTour, longDate, money, todayISO, unitCount, unitLabel, whatsappUrl } from "@/lib/format";
@@ -148,6 +149,15 @@ export function BookingForm({
         >
           <WhatsAppIcon size={22} /> Verificar disponibilidade
         </a>
+      ) : mode === "add" && !site.onlineBooking ? (
+        <button
+          type="button"
+          disabled={!canSave}
+          onClick={() => save(false)}
+          className="rounded-full bg-gradient-to-r from-sun-500 to-sun-400 py-4 text-sm font-extrabold uppercase tracking-wide text-white shadow-lg shadow-sun-500/30 transition hover:brightness-105 disabled:opacity-40 disabled:shadow-none"
+        >
+          {current ? "Atualizar roteiro" : "+ Adicionar ao roteiro"}
+        </button>
       ) : mode === "add" ? (
         <div className="grid gap-2 sm:grid-cols-2">
           <button

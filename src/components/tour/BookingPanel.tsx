@@ -37,7 +37,10 @@ export function BookingPanel({ base, phone }: { base: BookingBase; phone: string
   );
 }
 
-/** Com a compra pelo site desligada: escolhe data e pessoas e pergunta a disponibilidade no WhatsApp. */
+/**
+ * Com a compra pelo site desligada: escolhe data e pessoas e pergunta a disponibilidade no WhatsApp —
+ * ou, com o carrinho ligado, adiciona ao roteiro (que vai inteiro pro WhatsApp no fim).
+ */
 function AvailabilityPanel({ base, phone }: { base: BookingBase; phone: string }) {
   const discounted = base.unitPrice < base.fullPrice;
   return (
@@ -53,8 +56,12 @@ function AvailabilityPanel({ base, phone }: { base: BookingBase; phone: string }
             <ShieldCheck size={14} /> Sem pagar agora
           </span>
         </div>
-        <BookingForm base={base} mode="ask" phone={phone} />
-        <p className="mt-3 text-center text-xs text-ink-900/50">A conversa abre no WhatsApp com tudo preenchido. O guia confirma a vaga por lá.</p>
+        <BookingForm base={base} mode={site.cart ? "add" : "ask"} phone={phone} />
+        <p className="mt-3 text-center text-xs text-ink-900/50">
+          {site.cart
+            ? "Junte vários passeios no seu roteiro e envie tudo pelo WhatsApp. O guia confirma as vagas por lá."
+            : "A conversa abre no WhatsApp com tudo preenchido. O guia confirma a vaga por lá."}
+        </p>
       </div>
       <div className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-between gap-3 border-t border-ink-900/10 bg-white/90 px-4 py-3 backdrop-blur-xl lg:hidden">
         <div>

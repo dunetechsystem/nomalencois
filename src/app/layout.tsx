@@ -44,7 +44,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
         <main>{children}</main>
         <Footer info={info} />
         <WhatsAppFab phone={info.phone} />
-        {site.onlineBooking && <CartDrawer />}
+        {(site.onlineBooking || site.cart) && <CartDrawer phone={info.phone} />}
       </body>
     </html>
   );
